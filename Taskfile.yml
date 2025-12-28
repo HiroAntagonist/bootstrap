@@ -1,0 +1,24 @@
+version: '3'
+
+tasks:
+  setup:
+    desc: Install dependencies
+    cmds:
+      - uv sync
+
+  test:
+    desc: Run tests
+    cmds:
+      - uv run pytest tests/
+
+  lint:
+    desc: Lint and Format
+    cmds:
+      - uv run ruff check .
+      - uv run ruff format .
+      - uv run mypy .
+
+  run:
+    desc: Run the CLI
+    cmds:
+      - uv run bootstrap {{.CLI_ARGS}}
