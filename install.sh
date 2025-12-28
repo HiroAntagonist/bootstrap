@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eo pipefail
 
 echo "🚀 Installing Bootstrap CLI..."
 

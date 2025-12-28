@@ -1,0 +1,35 @@
+version: '3'
+
+tasks:
+  setup:
+    desc: Install all dependencies (Python + Go + Tools)
+    cmds:
+      - echo "📦 Installing dependencies..."
+      - uv sync
+      - cmd: go mod download
+        ignore_error: true # Only if go.mod exists
+
+  dev:
+    desc: Start development server
+    cmds:
+      - echo "🚀 Starting dev server..."
+      - cd backend && task dev
+
+  test:
+    desc: Run all tests
+    cmds:
+      - echo "🧪 Running tests..."
+      - cd backend && task test
+      # Future: cd packages/api-client && npm test
+
+  generate:api:
+    desc: Generate API Client from OpenAPI spec
+    cmds:
+      - echo "⚙️ Generating API client..."
+      # Usage of openapi-generator-cli or similar would go here
+      - echo "Stub: openapi-generator generate -i api/openapi.yaml -g typescript-axios -o packages/api-client"
+
+  db:migrate:
+    desc: Run database migrations
+    cmds:
+      - cd backend && task db:migrate

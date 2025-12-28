@@ -1,0 +1,16 @@
+project_name:
+  type: str
+  help: Name of the project
+
+deploy_target:
+  type: str
+  default: fly
+  choices:
+    - fly
+    - k8s
+
+backend_type:
+  type: str
+  choices:
+    - python
+    - go

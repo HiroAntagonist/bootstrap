@@ -1,6 +1,6 @@
 import typer
-from typing import Optional
 from rich.console import Console
+from bootstrap.commands import doctor, init, add
 
 app = typer.Typer(
     name="bootstrap",
@@ -9,6 +9,11 @@ app = typer.Typer(
     no_args_is_help=True,
 )
 console = Console()
+
+# Register subcommands
+app.command(name="doctor")(doctor.check_tools)
+app.command(name="init")(init.init_project)
+app.command(name="add")(add.add_component)
 
 def main():
     """Entry point for the CLI."""

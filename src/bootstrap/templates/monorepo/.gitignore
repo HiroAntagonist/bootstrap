@@ -1,0 +1,82 @@
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Trashes
+
+# Editor directories and files
+.idea/
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Go
+bin/
+pkg/
+vendor/
+go.work.sum
+
+# Taskfile
+.task/
+
+# Terraform/Infrastructure usually
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Node / JS (for future web)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache/
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+
+# Copier
+.copier-answers.yml
