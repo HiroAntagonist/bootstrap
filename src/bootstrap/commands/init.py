@@ -50,7 +50,7 @@ def init_project(
     
     # Common Data for Templates
     data = {
-        "project_name": project_name,
+        "project_name": project_path.name,
         "backend_type": backend.value,
         "deploy_target": deploy.value,
     }

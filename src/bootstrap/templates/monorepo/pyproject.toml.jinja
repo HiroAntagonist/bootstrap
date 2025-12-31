@@ -4,15 +4,20 @@ version = "0.1.0"
 description = "Monorepo for {{ project_name }}"
 requires-python = ">=3.12"
 dependencies = [
-    "typer>=0.9.0",
-    "httpx>=0.25.0"
+    "{{ project_name }}-cli", # The CLI package
+    {% if backend_type == 'python' %}
+    "backend",
+    {% endif %}
 ]
 
-[project.scripts]
-{{ project_name }}-cli = "cli.src.main:app"
+
 
 [tool.uv.workspace]
 members = ["backend", "cli"]
+
+[tool.uv.sources]
+"{{ project_name }}-cli" = { workspace = true }
+backend = { workspace = true }
 
 [dependency-groups]
 dev = [
