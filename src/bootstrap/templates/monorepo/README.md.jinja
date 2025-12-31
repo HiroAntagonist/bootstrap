@@ -39,8 +39,15 @@ task test
 ```
 
 ## Directory Structure
-- `backend/`: Application source code.
-- `cli/`: Management scripts (Python).
-- `infra/`: Infrastructure configuration (Fly.io, Docker).
-- `api/`: OpenAPI specifications.
-- `packages/`: Shared libraries and generated clients.
+```text
+├── Agents.md             # Context for AI Agents
+├── Taskfile.yml          # Command runner
+├── pyproject.toml        # Workspace root
+├── infra/                # Infrastructure (Fly/Docker)
+├── api/                  # OpenAPI Spec
+├── packages/             # Shared Code Libraries
+├── cli/                  # Management CLI
+│   └── src/cli/          # CLI Source
+└── backend/              # Backend Service
+    └── src/backend/      # Backend Source
+```
