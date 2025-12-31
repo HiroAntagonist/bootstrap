@@ -9,10 +9,10 @@ dependencies = [
 ]
 
 [project.scripts]
-{{ project_name }}-cli = "cli.main:app"
+{{ project_name }}-cli = "cli.src.main:app"
 
 [tool.uv.workspace]
-members = ["backend"]
+members = ["backend", "cli"]
 
 [dependency-groups]
 dev = [

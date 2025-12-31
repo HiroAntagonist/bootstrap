@@ -16,3 +16,12 @@ indent_style = tab
 
 [*.go]
 indent_style = tab
+
+[*.md]
+trim_trailing_whitespace = false
+
+[Taskfile.yml]
+indent_size = 2
+
+[*.swift]
+indent_size = 4
