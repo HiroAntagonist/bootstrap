@@ -19,8 +19,9 @@ uv sync
 
 # Using 'uv tool' is the modern way if available, else standard pip install
 if uv tool --help &> /dev/null; then
-    echo "🔧 Installing as a tool via uv..."
-    uv tool install . --force
+    echo "🔧 Installing as a tool via uv (editable mode)..."
+    # --editable links the tool to the current directory, so changes are reflected immediately!
+    uv tool install . --editable --force
 else
     echo "⚠️ 'uv tool' not available. You can run the tool using:"
     echo "   uv run bootstrap"
