@@ -84,7 +84,7 @@ def init_project(
     # We might want to rename or ensure permissions.
     
     # 4. Git Init & Remote
-    console.print("[dim]Step 3: Initializing Git...[/dim]")
+    console.print("[dim]Step 3: Initializing Git (with logs) ...[/dim]")
     try:
         if not (project_path / ".git").exists():
             # Use sh or subprocess
@@ -101,6 +101,8 @@ def init_project(
                     subprocess.run(["gh", "repo", "create", project_name, vis_flag, "--source=.", "--remote=origin", "--push"], cwd=project_path, check=True)
                 except subprocess.CalledProcessError:
                     console.print("[red]Failed to create GitHub remote. Is 'gh' installed and authenticated?[/red]")
+        else:
+            console.print("[yellow].git/ exist. Skipping git initialization including remote creation")
     except Exception as e:
         console.print(f"[yellow]Git initialization failed: {e}[/yellow]")
 
