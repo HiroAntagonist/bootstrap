@@ -71,7 +71,7 @@ def init_project(
     if backend_template.exists():
         copier.run_copy(
             src_path=str(backend_template),
-            dst_path=str(project_path),
+            dst_path=str(project_path / "services"),
             data=data,
             overwrite=True,
             unsafe=True

@@ -13,7 +13,7 @@ dependencies = [
 
 
 [tool.uv.workspace]
-members = ["backend", "cli"]
+members = ["services/*", "apps/*", "packages/*"]
 
 [tool.uv.sources]
 "{{ project_name }}-cli" = { workspace = true }
@@ -62,7 +62,7 @@ disallow_untyped_defs = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-testpaths = ["cli", "backend/tests"]
+testpaths = ["apps/cli", "services/backend/tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
 asyncio_mode = "auto"

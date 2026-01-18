@@ -1,0 +1,18 @@
+version: '3'
+
+tasks:
+  dev:
+    desc: Start development server
+    cmds:
+      - echo "🚀 Starting Backend (Python)..."
+      - uv run uvicorn src.backend.main:app --reload
+
+  test:
+    desc: Run tests
+    cmds:
+      - uv run pytest
+
+  db:migrate:
+    desc: Run database migrations
+    cmds:
+      - 'echo "Stub: alembic upgrade head"'

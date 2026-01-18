@@ -46,8 +46,56 @@ task test
 ├── infra/                # Infrastructure (Fly/Docker)
 ├── api/                  # OpenAPI Spec
 ├── packages/             # Shared Code Libraries
-├── cli/                  # Management CLI
-│   └── src/cli/          # CLI Source
-└── backend/              # Backend Service
-    └── src/backend/      # Backend Source
+├── apps/                 # Client Applications
+│   └── cli/              # Management CLI
+└── services/             # Backend Services
+    └── backend/          # Backend Service
+```
+
+## Architecture
+
+This monorepo is designed to be polyglot and scalable.
+
+### 1. Services & Apps `[apps/]` `[services/]`
+*   **`services/`**: Backend microservices or the main monolith.
+*   **`apps/`**: Client-side applications.
+    *   `apps/cli`: Python-based CLI for management.
+    *   *(Future)* `apps/web`: Next.js web application.
+    *   *(Future)* `apps/ios`: Native Swift iOS application.
+
+### 2. Shared Packages `[packages/]`
+Code shared between apps and services lives here.
+*   **`packages/api-client-python`**: Auto-generated Python client for your backend API (used by `apps/cli`).
+*   *(Future)* **`packages/api-client-swift`**: Swift client for iOS.
+*   *(Future)* **`packages/api-client-ts`**: TypeScript client for Web.
+
+## Managing Components
+
+### Installed by Default
+When you run `bootstrap init`, you get:
+*   A backend service (Python/Go).
+*   A Python CLI (`apps/cli`).
+*   Infrastructure config (Docker/Fly).
+*   A shared API client package.
+
+### Adding New Components
+Use the `bootstrap` tool to expand your project.
+
+#### Adding a Shared Package
+Create a new shared library (e.g., for shared business logic, types, or utilities):
+
+```bash
+# Add a Python package
+bootstrap add package my-core-lib --type python
+
+# Add a Go package
+bootstrap add package my-go-lib --type go
+```
+
+#### Adding an App (Coming Soon)
+To add a new frontend or service:
+
+```bash
+bootstrap add component web  # Scaffolds Next.js
+bootstrap add component ios  # Scaffolds iOS Swift App
 ```

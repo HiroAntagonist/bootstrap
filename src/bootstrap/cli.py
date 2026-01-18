@@ -13,7 +13,7 @@ console = Console()
 # Register subcommands
 app.command(name="doctor")(doctor.check_tools)
 app.command(name="init")(init.init_project)
-app.command(name="add")(add.add_component)
+app.add_typer(add.app, name="add")
 
 def main():
     """Entry point for the CLI."""
