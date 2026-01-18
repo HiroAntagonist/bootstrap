@@ -2,6 +2,11 @@ project_name:
   type: str
   help: Name of the project
 
+project_name_sanitized:
+  type: str
+  default: "{{ project_name | replace('-', '_') }}"
+  when: false
+
 deploy_target:
   type: str
   default: fly

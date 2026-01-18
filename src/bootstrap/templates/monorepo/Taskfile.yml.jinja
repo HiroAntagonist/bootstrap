@@ -8,6 +8,7 @@ tasks:
       - uv sync
       - cmd: go mod download
         ignore_error: true # Only if go.mod exists
+      - task: generate:api
 
   dev:
     desc: Start development server
@@ -26,8 +27,8 @@ tasks:
     desc: Generate API Client from OpenAPI spec
     cmds:
       - echo "⚙️ Generating API client..."
-      # Usage of openapi-generator-cli or similar would go here
-      - 'echo "Stub: openapi-generator generate -i api/openapi.yaml -g typescript-axios -o packages/api-client"'
+      - uv run openapi-python-client generate --path api/openapi.yaml --output-path packages/{{ project_name_sanitized }}_api/src/{{ project_name_sanitized }}_api --overwrite --meta none
+      - uv sync --reinstall-package {{ project_name_sanitized }}_api
 
   db:migrate:
     desc: Run database migrations

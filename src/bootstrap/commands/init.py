@@ -25,7 +25,13 @@ def init_project(
 ):
     """Initialize a new SaaS project."""
     project_path = Path(project_name).resolve()
-    
+
+    # Validate project name - must be a valid Python identifier (no hyphens)
+    if "-" in project_path.name:
+        console.print(f"[red]Error: Project name '{project_path.name}' contains hyphens.[/red]")
+        console.print("Project names must use underscores, not hyphens (e.g., 'my_project' not 'my-project').")
+        raise typer.Exit(code=1)
+
     # Resolve templates directory (assumes templates are in src/bootstrap/templates)
     # __file__ is src/bootstrap/commands/init.py
     # Templates are at src/bootstrap/templates

@@ -2,6 +2,9 @@ import typer
 import httpx
 from rich.console import Console
 from rich.panel import Panel
+# Generated Client Imports
+from {{ project_name_sanitized }}_api.client import Client
+from {{ project_name_sanitized }}_api.api.default import check_health
 
 app = typer.Typer()
 console = Console()
@@ -11,15 +14,16 @@ API_URL = "http://localhost:8000"
 @app.command()
 def health():
     """Check the health of the backend API."""
+    client = Client(base_url=API_URL)
     try:
-        response = httpx.get(f"{API_URL}/health")
+        # sync_detailed returns a Response object with .status_code and .parsed content
+        response = check_health.sync_detailed(client=client)
         if response.status_code == 200:
-            data = response.json()
-            console.print(Panel(f"[green]Status: {data['status']}[/green]\nVersion: {data['version']}", title="System Health"))
+            console.print(Panel(f"[green]Status: {response.parsed.status}[/green]\nVersion: {response.parsed.version}", title="System Health"))
         else:
             console.print(f"[red]Error: Backend returned {response.status_code}[/red]")
-    except httpx.ConnectError:
-        console.print("[red]Error: Could not connect to backend. Is it running?[/red]")
+    except Exception as e:
+        console.print(f"[red]Error: Could not connect to backend or API error. {e}[/red]")
 
 @app.command()
 def hello():
