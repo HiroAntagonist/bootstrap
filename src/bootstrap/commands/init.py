@@ -1,9 +1,10 @@
 import typer
-from typing import Optional
 from enum import Enum
 from pathlib import Path
 from rich.console import Console
 import copier
+
+from bootstrap.naming import parse_project_name
 
 console = Console()
 
@@ -26,11 +27,8 @@ def init_project(
     """Initialize a new SaaS project."""
     project_path = Path(project_name).resolve()
 
-    # Validate project name - must be a valid Python identifier (no hyphens)
-    if "-" in project_path.name:
-        console.print(f"[red]Error: Project name '{project_path.name}' contains hyphens.[/red]")
-        console.print("Project names must use underscores, not hyphens (e.g., 'my_project' not 'my-project').")
-        raise typer.Exit(code=1)
+    # Parse project name into all naming convention variants
+    names = parse_project_name(project_path.name)
 
     # Resolve templates directory (assumes templates are in src/bootstrap/templates)
     # __file__ is src/bootstrap/commands/init.py
@@ -56,7 +54,11 @@ def init_project(
     
     # Common Data for Templates
     data = {
-        "project_name": project_path.name,
+        "project_name": names.original,
+        "project_name_snake": names.snake,
+        "project_name_pascal": names.pascal,
+        "project_name_kebab": names.kebab,
+        "project_name_lower": names.lower,
         "backend_type": backend.value,
         "deploy_target": deploy.value,
     }

@@ -7,7 +7,7 @@ dependencies = [
     "typer>=0.9.0",
     "httpx>=0.27.0",
     "rich>=13.7.0",
-    "{{ project_name_sanitized }}_api",
+    "{{ project_name_snake }}_api",
 ]
 
 [project.scripts]
@@ -21,4 +21,4 @@ build-backend = "hatchling.build"
 packages = ["src/cli"]
 
 [tool.uv.sources]
-{{ project_name_sanitized }}_api = { workspace = true }
+{{ project_name_snake }}_api = { workspace = true }

@@ -2,9 +2,24 @@ project_name:
   type: str
   help: Name of the project
 
-project_name_sanitized:
+project_name_snake:
   type: str
-  default: "{{ project_name | replace('-', '_') }}"
+  help: snake_case variant (Python convention)
+  when: false
+
+project_name_pascal:
+  type: str
+  help: PascalCase variant (Swift convention)
+  when: false
+
+project_name_kebab:
+  type: str
+  help: kebab-case variant (TypeScript convention)
+  when: false
+
+project_name_lower:
+  type: str
+  help: lowercase variant (Go convention)
   when: false
 
 deploy_target:

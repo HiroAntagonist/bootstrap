@@ -3,8 +3,8 @@ import httpx
 from rich.console import Console
 from rich.panel import Panel
 # Generated Client Imports
-from {{ project_name_sanitized }}_api.client import Client
-from {{ project_name_sanitized }}_api.api.default import check_health
+from {{ project_name_snake }}_api.client import Client
+from {{ project_name_snake }}_api.api.default import check_health
 
 app = typer.Typer()
 console = Console()

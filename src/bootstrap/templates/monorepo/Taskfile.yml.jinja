@@ -27,10 +27,15 @@ tasks:
     desc: Generate API Client from OpenAPI spec
     cmds:
       - echo "⚙️ Generating API client..."
-      - uv run openapi-python-client generate --path api/openapi.yaml --output-path packages/{{ project_name_sanitized }}_api/src/{{ project_name_sanitized }}_api --overwrite --meta none
-      - uv sync --reinstall-package {{ project_name_sanitized }}_api
+      - uv run openapi-python-client generate --path api/openapi.yaml --output-path packages/{{ project_name_snake }}_api/src/{{ project_name_snake }}_api --overwrite --meta none
+      - uv sync --reinstall-package {{ project_name_snake }}_api
 
   db:migrate:
     desc: Run database migrations
     cmds:
       - cd services/backend && task db:migrate
+
+  health:
+    desc: Check backend health via CLI
+    cmds:
+      - uv run {{ project_name }}-cli health
