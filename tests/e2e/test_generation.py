@@ -27,6 +27,8 @@ def test_init_go_project(runner, temp_workspace):
     assert project_root.exists()
     assert (project_root / "pyproject.toml").exists()  # CLI requires this
     assert (project_root / "services/backend/main.go").exists()
+    assert (project_root / "services/backend/Taskfile.yml").exists()
+    assert (project_root / "services/backend/go.mod").exists()
     assert (project_root / "Taskfile.yml").exists()
     assert (project_root / "packages/my_go_app_api").exists()
 

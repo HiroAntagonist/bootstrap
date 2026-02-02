@@ -6,11 +6,12 @@ app = FastAPI(title="{{ project_name }}")
 class HealthResponse(BaseModel):
     status: str
     version: str
+    runtime: str
 
 @app.get("/health", response_model=HealthResponse)
 def health_check():
     """Health check endpoint."""
-    return {"status": "ok", "version": "0.1.0"}
+    return {"status": "ok", "version": "0.1.0", "runtime": "python"}
 
 @app.get("/")
 def read_root():

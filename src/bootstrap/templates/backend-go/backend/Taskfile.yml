@@ -1,0 +1,25 @@
+# ABOUTME: Task runner configuration for Go backend service.
+# ABOUTME: Provides dev, test, build, and migration commands.
+version: '3'
+
+tasks:
+  dev:
+    desc: Start development server
+    cmds:
+      - echo "Starting Backend (Go)..."
+      - go run .
+
+  test:
+    desc: Run tests
+    cmds:
+      - go test ./...
+
+  build:
+    desc: Build the binary
+    cmds:
+      - go build -o bin/backend .
+
+  db:migrate:
+    desc: Run database migrations (stub)
+    cmds:
+      - 'echo "Stub: goose up"'

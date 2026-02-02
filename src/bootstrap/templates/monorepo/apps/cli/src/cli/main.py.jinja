@@ -19,7 +19,7 @@ def health():
         # sync_detailed returns a Response object with .status_code and .parsed content
         response = check_health.sync_detailed(client=client)
         if response.status_code == 200:
-            console.print(Panel(f"[green]Status: {response.parsed.status}[/green]\nVersion: {response.parsed.version}", title="System Health"))
+            console.print(Panel(f"[green]Status: {response.parsed.status}[/green]\nVersion: {response.parsed.version}\nRuntime: {response.parsed.runtime}", title="System Health"))
         else:
             console.print(f"[red]Error: Backend returned {response.status_code}[/red]")
     except Exception as e:

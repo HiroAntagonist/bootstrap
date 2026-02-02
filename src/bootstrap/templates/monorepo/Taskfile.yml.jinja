@@ -6,8 +6,9 @@ tasks:
     cmds:
       - echo "📦 Installing dependencies..."
       - uv sync
-      - cmd: go mod download
-        ignore_error: true # Only if go.mod exists
+      {% if backend_type == 'go' %}
+      - cd services/backend && go mod download
+      {% endif %}
       - task: generate:api
 
   dev:
